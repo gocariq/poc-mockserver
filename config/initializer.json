@@ -1,0 +1,20 @@
+[
+    {
+        "httpRequest": {
+            "path": "/payment/register/forward"
+        },
+        "httpForwardClassCallback": {
+            "callbackClass": "com.poc.expectations.callback.PaymentForwardCallback"
+        }
+    },
+    {
+        "httpRequest": {
+            "path": "/payment/register"
+        },
+        "httpOverrideForwardedRequest": {
+            "httpRequest": {
+                "path": "/payment/register/forward"
+            }
+        }
+    }
+]
