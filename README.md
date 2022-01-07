@@ -1,6 +1,13 @@
 # poc-mockserver
 This PoC was developed to test the Forward Carllback feature of the Mock-Server (https://mock-server.com/).
 
+### The structure
+- poc-webhook: it is the project to simulate a WebHook service
+- poc-mockserver: The callback implementation
+- stubs: the configuration files
+    - initilizer.json: the stub definitions
+    - mockserver.properties: the configuration file for MockServer
+
 ### Follow the steps below to run the PoC:
 
 1. Build the poc-webhook
