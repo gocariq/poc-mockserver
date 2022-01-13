@@ -27,7 +27,13 @@ The poc-mockserver is the project that has the classes to run the callbacks for 
 $ ./gradlew build
 ```
 
-3. Run MockServer as docker container
+3. Build the initializer json (jq will merge all mappings)
+
+```bash
+jq -s 'flatten' config/mappings/*.json > config/initializer.json
+```
+
+4. Run MockServer as docker container
 
 ```bash
 $ docker run --rm --network=host -v $PWD/config:/config -v $PWD/libs:/libs -p 1080:1080 mockserver/mockserver -serverPort 1080

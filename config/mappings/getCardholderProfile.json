@@ -1,43 +1,6 @@
 [
     {
         "httpRequest": {
-            "path": "/payment/register/forward"
-        },
-        "httpForwardClassCallback": {
-            "callbackClass": "com.poc.expectations.callback.PaymentForwardCallback"
-        }
-    },
-    {
-        "httpRequest": {
-            "path": "/payment/register"
-        },
-        "httpOverrideForwardedRequest": {
-            "httpRequest": {
-                "path": "/payment/register/forward"
-            }
-        }
-    },
-    {
-        "httpRequest": {
-            "path": "/echo",
-            "method": "GET"
-        },
-        "httpResponse": {
-            "statusCode": 200,
-            "body": {
-                "echoResponse": {
-                    "responseCode": "00",
-                    "responseDesc": "Service is up and running",
-                    "fee": 0.00,
-                    "balance": 0.00,
-                    "lastDepositAmount": 0.00,
-                    "ledgerBalance": 0.00
-                }
-            }
-        }
-    },
-    {
-        "httpRequest": {
             "path": "/getCardholderProfile",
             "method": "POST"
         },
