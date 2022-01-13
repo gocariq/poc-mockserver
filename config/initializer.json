@@ -16,5 +16,60 @@
                 "path": "/payment/register/forward"
             }
         }
+    },
+    {
+        "httpRequest": {
+            "path": "/echo",
+            "method": "GET"
+        },
+        "httpResponse": {
+            "statusCode": 200,
+            "body": {
+                "echoResponse": {
+                    "responseCode": "00",
+                    "responseDesc": "Service is up and running",
+                    "fee": 0.00,
+                    "balance": 0.00,
+                    "lastDepositAmount": 0.00,
+                    "ledgerBalance": 0.00
+                }
+            }
+        }
+    },
+    {
+        "httpRequest": {
+            "path": "/getCardholderProfile",
+            "method": "POST"
+        },
+        "httpResponse": {
+            "statusCode": 200,
+            "body": {
+                "getCardholderProfileResponse": {
+                    "referenceId": "110646838250",
+                    "stakeholderId": "Test_Stk2",
+                    "status": {
+                      "code": "B",
+                      "description": "Open - All Transactions Allowed"
+                    },
+                    "transitionFlag": "N",
+                    "statusCode": "B",
+                    "country": "USA",
+                    "expDate": "2026-05-31",
+                    "cardType": "U",
+                    "cardProgramId": "CarIQ_GPR",
+                    "cipCleared": "N",
+                    "cardDeliveryMode": "P",
+                    "responseCode": "00",
+                    "responseDesc": "Get Cardholder Profile",
+                    "transId": "F148858499",
+                    "customerId": "110000000006468382",
+                    "fee": 0.00,
+                    "balance": 10.00,
+                    "lastDepositDate": "2021-09-07",
+                    "lastDepositAmount": 10.00,
+                    "ledgerBalance": 10.00
+                }
+            }
+        }
     }
 ]
