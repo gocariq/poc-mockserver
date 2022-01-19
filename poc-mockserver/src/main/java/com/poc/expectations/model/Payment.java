@@ -1,7 +1,5 @@
 package com.poc.expectations.model;
 
-import java.time.LocalDateTime;
-
 public class Payment {
 
     private String id;

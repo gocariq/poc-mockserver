@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class JsonResponseReader {
 
-    private static final String RESPONSE_PATH = "/config/responses/";
+    private static final String RESPONSE_PATH = "/Users/welsoncarvalho/Development/workspace/gocariq/poc-mockserver/config/responses/";
     private static final String EXTENSION = ".json";
 
     private final JSONParser parser;
@@ -20,8 +20,25 @@ public class JsonResponseReader {
     }
 
     public Optional<JSONObject> getFiltered(String file, Map<String, Object> filter) {
-        //TODO
-        return Optional.empty();
+
+        JSONArray array = (JSONArray) readFile(file);
+
+        return array.stream()
+                .filter(obj -> {
+
+                    JSONObject filters = (JSONObject) ((JSONObject) obj).get("filters");
+
+                    for (String filterKey : filter.keySet()) {
+
+                        if (filters.get(filterKey) == null || !filters.get(filterKey).equals(filter.get(filterKey))) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                })
+                .findFirst()
+                .map(obj -> (JSONObject) obj);
     }
 
     public Optional<JSONObject> getDefault(String file) {
