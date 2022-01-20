@@ -2,6 +2,7 @@ package com.poc.expectations.utils;
 
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 import org.mockserver.model.HttpRequest;
 
 import java.util.HashMap;
@@ -9,7 +10,9 @@ import java.util.Map;
 
 public class FilterUtils {
 
-    public static Map<String, Object> buildFilters(HttpRequest request) throws Exception {
+    private FilterUtils() {}
+
+    public static Map<String, Object> buildFilters(HttpRequest request) throws ParseException {
         JSONParser parser = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
         Object object = parser.parse(request.getBodyAsJsonOrXmlString());
 
@@ -23,10 +26,10 @@ public class FilterUtils {
 
         JSONObject json = (JSONObject) object;
 
-        for (String key : json.keySet()) {
+        for (Map.Entry<String, Object> entry : json.entrySet()) {
 
-            Object value = json.get(key);
-            String mapKey = buildKey(prefix, key);
+            Object value = entry.getValue();
+            String mapKey = buildKey(prefix, entry.getKey());
 
             if (value instanceof JSONObject) {
                 loadMap(value, mapKey, filters);

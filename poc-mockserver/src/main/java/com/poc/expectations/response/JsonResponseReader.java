@@ -1,5 +1,6 @@
 package com.poc.expectations.response;
 
+import com.poc.expectations.exception.JsonParseException;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
@@ -10,7 +11,7 @@ import java.util.Optional;
 
 public class JsonResponseReader {
 
-    private static final String RESPONSE_PATH = "/Users/welsoncarvalho/Development/workspace/gocariq/poc-mockserver/config/responses/";
+    private static final String RESPONSE_PATH = "/config/responses/";
     private static final String EXTENSION = ".json";
 
     private final JSONParser parser;
@@ -28,9 +29,12 @@ public class JsonResponseReader {
 
                     JSONObject filters = (JSONObject) ((JSONObject) obj).get("filters");
 
-                    for (String filterKey : filter.keySet()) {
+                    for (Map.Entry<String, Object> entry : filter.entrySet()) {
 
-                        if (filters.get(filterKey) == null || !filters.get(filterKey).equals(filter.get(filterKey))) {
+                        String filterKey = entry.getKey();
+                        Object filterValue = entry.getValue();
+
+                        if (filters.get(filterKey) == null || !filters.get(filterKey).equals(filterValue)) {
                             return false;
                         }
                     }
@@ -38,7 +42,7 @@ public class JsonResponseReader {
                     return true;
                 })
                 .findFirst()
-                .map(obj -> (JSONObject) obj);
+                .map(JSONObject.class::cast);
     }
 
     public Optional<JSONObject> getDefault(String file) {
@@ -51,14 +55,14 @@ public class JsonResponseReader {
                     return (boolean) json.get("default");
                 })
                 .findFirst()
-                .map(obj -> (JSONObject) obj);
+                .map(JSONObject.class::cast);
     }
 
     private Object readFile(String file) {
         try (FileReader reader = new FileReader(RESPONSE_PATH + file + EXTENSION)) {
             return parser.parse(reader);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new JsonParseException("Error to parse file " + file, e);
         }
     }
 }

@@ -33,7 +33,7 @@
     {
         "default": false,
         "filters": {
-            "customerId": "110000000006468383"
+            "card.number": "1111222233334444"
         },
         "response": {
             "getCardholderProfileResponse": {
