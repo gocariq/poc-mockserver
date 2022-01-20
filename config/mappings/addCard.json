@@ -1,0 +1,38 @@
+[
+    {
+        "httpRequest": {
+            "path": "/addCard",
+            "method": "POST"
+        },
+        "httpResponse": {
+            "statusCode": 200,
+            "body": {
+                "responseCode": "00",
+                "responseDesc": "Add Card",
+                "newCardNumber": {
+                    "number": "6546736892739273",
+                    "expireDate": "122099"
+                },
+                "sharingCards": [
+                    {
+                        "sharingCardNumber": "1111111111111111",
+                        "sharingCardReferenceId": "mock-scrid-1111"
+                    },
+                    {
+                        "sharingCardNumber": "2222222222222222",
+                        "sharingCardReferenceId": "mock-scrid-2222"
+                    }
+                ],
+                "balance": 0.0,
+                "transId": "mock-transId",
+                "arn": "mock-arn",
+                "clerkId": "mock-clerkId",
+                "customerId": "110000000009999999",
+                "fee": 0.0,
+                "referenceId": "mock-referenceId",
+                "batchReferenceId": "mock-batchReferenceId",
+                "nameOnCard": "Mock Name"
+            }
+        }
+    }
+]
