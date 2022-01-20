@@ -19,6 +19,8 @@ COPY --from=build-env /app/build/libs/poc-mockserver-*.jar /libs/
 COPY --from=build-env /config/mockserver.properties /config/
 COPY --from=build-env /config/initializer.json /config/
 
+COPY /config/responses /config/responses
+
 EXPOSE 1080
 
 ENTRYPOINT ["java", "-Dfile.encoding=UTF-8", "-cp", "/mockserver-netty-jar-with-dependencies.jar:/libs/*", "-Dmockserver.initializationJsonPath=/config/initializer.json", "-Dmockserver.propertyFile=/config/mockserver.properties", "org.mockserver.cli.Main"]
