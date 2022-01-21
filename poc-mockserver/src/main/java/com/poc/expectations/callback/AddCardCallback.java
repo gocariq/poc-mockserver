@@ -30,7 +30,7 @@ public class AddCardCallback implements ExpectationResponseCallback {
         response.put("clerkId", "mock-clerkId");
         response.put("customerId", "110000000009999999");
         response.put("fee", 0.0);
-        response.put("referenceId", RandomValuesUtil.stringLettersAndNumber(20));
+        response.put("referenceId", RandomValuesUtil.stringNumbers(15));
         response.put("batchReferenceId", "mock-batchReferenceId");
         response.put("nameOnCard", "Mock Name");
 
@@ -39,7 +39,7 @@ public class AddCardCallback implements ExpectationResponseCallback {
 
     private JSONObject newCardNumber() {
         JSONObject newCardNumber = new JSONObject();
-        newCardNumber.put("number", "60888505" + RandomValuesUtil.stringNumbers(8));
+        newCardNumber.put("number", "6088850592739273");
         newCardNumber.put("expiryDate", "122099");
         return newCardNumber;
     }
