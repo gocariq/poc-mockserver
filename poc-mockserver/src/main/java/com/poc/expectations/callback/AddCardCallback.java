@@ -25,22 +25,23 @@ public class AddCardCallback implements ExpectationResponseCallback {
     }
 
     private JSONObject response(JSONObject addCard) {
+        JSONObject addCardResponse = new JSONObject();
+
+        addCardResponse.put("responseCode", "00");
+        addCardResponse.put("responseDesc", "Supplementary Card Purchase Order");
+        addCardResponse.put("newCardNumber", newCardNumber());
+        addCardResponse.put("balance", 0.0);
+        addCardResponse.put("transId", transId());
+        addCardResponse.put("customerId", "110000000009999999");
+        addCardResponse.put("fee", 0.0);
+        addCardResponse.put("referenceId", RandomValuesUtil.stringNumbers(15));
+        addCardResponse.put("batchReferenceId", RandomValuesUtil.stringNumbers(5));
+        addCardResponse.put("nameOnCard", nameOnCard(addCard));
+        addCardResponse.put("lastDepositAmount", 0.0);
+        addCardResponse.put("ledgerBalance", 0.0);
+
         JSONObject response = new JSONObject();
-
-        response.put("responseCode", "00");
-        response.put("responseDesc", "Add Card");
-        response.put("newCardNumber", newCardNumber());
-        response.put("sharingCards", sharingCards());
-        response.put("balance", 0.0);
-        response.put("transId", transId());
-        response.put("arn", "mock-arn");
-        response.put("clerkId", "mock-clerkId");
-        response.put("customerId", "110000000009999999");
-        response.put("fee", 0.0);
-        response.put("referenceId", RandomValuesUtil.stringNumbers(15));
-        response.put("batchReferenceId", RandomValuesUtil.stringNumbers(20));
-        response.put("nameOnCard", nameOnCard(addCard));
-
+        response.put("addCardResponse", addCardResponse);
         return response;
     }
 
@@ -51,22 +52,8 @@ public class AddCardCallback implements ExpectationResponseCallback {
         return newCardNumber;
     }
 
-    private JSONArray sharingCards() {
-        JSONArray sharingCards = new JSONArray();
-        sharingCards.add(sharingCard("1111111111111111", "mock-scrid-1111"));
-        sharingCards.add(sharingCard("2222222222222222", "mock-scrid-2222"));
-        return sharingCards;
-    }
-
-    private JSONObject sharingCard(String number, String referenceId) {
-        JSONObject sharingCard = new JSONObject();
-        sharingCard.put("sharingCardNumber", number);
-        sharingCard.put("sharingCardReferenceId", referenceId);
-        return sharingCard;
-    }
-
     private String transId() {
-        return "D2" + RandomValuesUtil.stringNumbers(9);
+        return "F" + RandomValuesUtil.stringNumbers(9);
     }
 
     private String nameOnCard(JSONObject addCard) {
